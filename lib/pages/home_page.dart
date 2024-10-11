@@ -10,32 +10,37 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   double _buttonRadius = 100;
 
+  final Tween<double> _backgroundScale = Tween<double>(begin: 0.1, end: 1.0);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Stack(
-          clipBehavior: Clip.none,
-          children: <Widget>[
-            _pageBackground(),
-            _circularAnimation(),
-          ],
+        body: Container(
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              _pageBackground(),
+              _circularAnimation(),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _pageBackground() {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xFF1E1E1E),
-            Colors.blue,
-          ],
-        ),
+    return TweenAnimationBuilder(
+      tween: _backgroundScale,
+      duration: Duration(seconds: 2),
+      builder: (_context, double _scale, _child) {
+        return Transform.scale(
+          scale: _scale,
+          child: _child,
+        );
+      },
+      child: Container(
+        color: Colors.red,
       ),
     );
   }
@@ -51,7 +56,7 @@ class _HomePageState extends State<HomePage> {
         child: AnimatedContainer(
           width: _buttonRadius,
           height: _buttonRadius,
-          curve: Curves.slowMiddle,
+          curve: Curves.easeInOutCubicEmphasized,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(_buttonRadius),
             color: Colors.purple,
@@ -59,7 +64,7 @@ class _HomePageState extends State<HomePage> {
           duration: const Duration(seconds: 1),
           child: const Center(
             child: Text(
-              'Click Me',
+              'Tap Me',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
