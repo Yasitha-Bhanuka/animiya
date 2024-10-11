@@ -8,9 +8,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  double _buttonRadius = 100;
 
-
-  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -46,12 +45,16 @@ class _HomePageState extends State<HomePage> {
   Widget _circularAnimation() {
     return Center(
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          setState(() {
+            _buttonRadius = _buttonRadius == 100 ? 200 : 100;
+          });
+        },
         child: AnimatedContainer(
-          width: 100,
-          height: 100,
+          width: _buttonRadius,
+          height: _buttonRadius,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
+            borderRadius: BorderRadius.circular(_buttonRadius),
             color: Colors.purple,
           ),
           duration: const Duration(seconds: 2),
