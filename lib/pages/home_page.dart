@@ -14,14 +14,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: <Widget>[
-              _pageBackground(),
-              _circularAnimation(),
-            ],
-          ),
+        body: Stack(
+          clipBehavior: Clip.none,
+          children: <Widget>[
+            _pageBackground(),
+            _circularAnimation(),
+          ],
         ),
       ),
     );
@@ -53,11 +51,21 @@ class _HomePageState extends State<HomePage> {
         child: AnimatedContainer(
           width: _buttonRadius,
           height: _buttonRadius,
+          curve: Curves.slowMiddle,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(_buttonRadius),
             color: Colors.purple,
           ),
-          duration: const Duration(seconds: 2),
+          duration: const Duration(seconds: 1),
+          child: const Center(
+            child: Text(
+              'Click Me',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+          ),
         ),
       ),
     );
