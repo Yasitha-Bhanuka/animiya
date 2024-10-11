@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage>
       child: GestureDetector(
         onTap: () {
           setState(() {
-            _buttonRadius = _buttonRadius == 100 ? 200 : 100;
+            _starIconAnimationController.toggle();
           });
         },
         child: AnimatedContainer(
