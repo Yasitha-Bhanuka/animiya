@@ -8,6 +8,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -44,13 +47,14 @@ class _HomePageState extends State<HomePage> {
     return Center(
       child: GestureDetector(
         onTap: () {},
-        child: Container(
+        child: AnimatedContainer(
           width: 100,
           height: 100,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
             color: Colors.purple,
           ),
+          duration: const Duration(seconds: 2),
         ),
       ),
     );
